@@ -10,6 +10,7 @@ class compareDataController extends Controller
     //It calls to functions to check what is on a table but not in the other one.
     function callHashComparators(Request $request){
        
+        
 
         $table_name = $request['table'];
 

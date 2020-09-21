@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="row justify-content-center" style="margin-top: 60px;">
+    <div class="row justify-content-center mainContainer" style="margin-top: 60px;">
 
 
     
@@ -17,7 +17,6 @@
                 </div>
                 <!-- Hidden post that calls /resetPresentacionBD route for cleaning the views and hash columns from the previous comparison  -->
                 <form method="POST" action="/resetPresentacionBD">
-                    @csrf
                     <button type="submit" class="btn btn-danger float-left">Reset Data</button>
                 </form>
         </div>
@@ -26,13 +25,13 @@
         <div class="col-2">
             <h5 style="color:#dddddd;" id="display-selected-table-name">Choose Tables From Data Base</h5>
             <!-- This div loads all the tables from the selected database with an onclick function that allows them to be selected -->
-            <div class="list-group tables-list-background" id="tables-list-container"></div>                
+            <div class="list-group tables-list-background" id="tables-list-container" style=" max-height: 350px;"></div>                
         </div>
 
 
 
         <!-- Column for resuming the selected tables from the previous column -->
-        <div class="col-4">
+        <div class="col-3">
         <div class="resume-table-background">
             <table class="table table-striped table-bordered">
                     <thead>
@@ -78,11 +77,16 @@
             border-radius: 5px;
             border: 1px solid #dddddd;
             padding: 20px;
+            max-height: 350px;
+            overflow-y: scroll;
         }
 
         .tables-list-background{
             max-height: 500px;
             overflow-y: scroll;
+        }
+        .mainContainer{
+            background-color: white;
         }
     </style>
 

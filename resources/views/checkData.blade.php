@@ -63,35 +63,7 @@
 
 
     <!-- Modal that helps to set the data to operate with the rules -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Apply Rule</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="form-inline">
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Ingresar Valor a Operar</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Ingresar Valor a Operar">
-                        </div>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label for="input-to-operate" class="sr-only">Ingresar Valor a Operar</label>
-                            <input type="text" class="form-control" id="input-to-operate" placeholder="Ej: 4">
-                        </div>
-                        <div id="mayus"></div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="applyRule();">Add Rule</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <style>
         .loaded-tables-container{
@@ -99,8 +71,8 @@
             border: 1px solid #dddddd;
             padding: 20px;
             background-color: #ECECEC;
-            min-height: 700px;
-            max-height: 700px;
+            min-height: 450px;
+            max-height: 450px;
             overflow-y: scroll;
         }
         .columns-container{
@@ -108,8 +80,8 @@
             border-radius: 5px;
             border: 1px solid #dddddd;
             padding: 20px;
-            min-height: 570px;
-            max-height: 570px;
+            min-height: 450px;
+            max-height: 450px;
             overflow-y: scroll;
         }
         
@@ -118,13 +90,18 @@
             border: 1px solid #dddddd;
             padding: 20px;
             background-color: #ECECEC;
-            min-height: 570px;
-            max-height: 570px;
+            min-height: 450px;
+            max-height: 450px;
             overflow-y: scroll;
         } 
     </style>
 
     <script >
+
+$("#step1").addClass("active");
+$("#step2").addClass( "active");
+$("#step3").addClass( "active");
+$("#step4").removeClass( "active");
 
             //it creates a JS variable with the php $data variable returned from the controller
             var tables = {!! json_encode($data) !!};

@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Laravel</title>
         <link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}" />
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
@@ -25,10 +26,8 @@
  
 
 
-        <!-- Styles -->
-        <style>
-            
-        </style>
+
+<link rel="stylesheet" type="text/css" href="{{ url('/css/steps.css') }}" />
     </head>
     <body>
 
@@ -36,10 +35,61 @@
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">Proyecto Sistema de Alerta Temprana</span>
     </nav>
-    
-    <div class='container-fluid'>
-        @yield('content')
+
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apply Rule</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="staticEmail2" class="sr-only">Ingresar Valor a Operar</label>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Ingresar Valor a Operar">
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="input-to-operate" class="sr-only">Ingresar Valor a Operar</label>
+                            <input type="text" class="form-control" id="input-to-operate" placeholder="Ej: 4">
+                        </div>
+                        <div id="mayus"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="applyRule();">Add Rule</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class='container-fluid mainContainer'>
+
+            <div class="myContainer" style="min-height: 100%; width: 95%; background-color: white;">
+
+                <div class="containerV">
+                    <ul class="progressbarV">
+                        <li id="step1">Establecer Tablas</li>
+                        <li id="step2">Selección Módulo</li>
+                        <li id="step3">Preparación</li>
+                        <li id="step4">Operación</li>
+                        
+                </ul>
+            
+            </div>
+            <hr style="margin-top: 110px;">
+            <div class="container-fluid" >
+            @yield('content')
+            </div>
+        </div>
+    
+        
 
 
     </body>

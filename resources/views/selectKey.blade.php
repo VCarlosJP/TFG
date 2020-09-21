@@ -8,19 +8,12 @@
     @endphp 
 
     <!-- This section shows a heading for the current page and a button that calls the next view/controller -->
-    <div class="row" style="margin-top: 40px;"> 
-        <div class="col-3">
-        </div>
-        <div class="col">
-            <div class="col">
-                <h1>Step #2</h1>
-            </div>
-            <hr></hr>
-        </div>
+    <!-- <div class="row" style="margin-top: 40px;"> 
+
         <div class="col-4">
             <button type="submit" class="btn btn-primary" onclick="postSelectedColumns()">Compare Tables</button>
         </div>
-    </div>
+    </div> -->
 
     <div class="row justify-content-center" style="margin-top: 20px;">
     <!-- This column renders all the tables names coming from $tables_name variable -->
@@ -54,6 +47,9 @@
             <div class="columns-container" id="columns-container">
             </div>   
         </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary" onclick="postSelectedColumns()">Compare Tables</button>
+        </div>
         <!-- The hidden form returns all the tables with all their columns that were diselected to be ignored -->
         <form action="/setDataToCompare" method="POST" id="post-ignored-tables-form">
                 @csrf
@@ -67,8 +63,8 @@
             border: 1px solid #dddddd;
             padding: 20px;
             background-color: #ECECEC;
-            min-height: 700px;
-            max-height: 700px;
+            min-height: 500px;
+            max-height: 500px;
             overflow-y: scroll;
         }
         .columns-container{
@@ -76,8 +72,8 @@
             border-radius: 5px;
             border: 1px solid #dddddd;
             padding: 20px;
-            min-height: 570px;
-            max-height: 570px;
+            min-height: 400px;
+            max-height: 400px;
             overflow-y: scroll;
         }     
     </style>
@@ -86,6 +82,11 @@
             //it creates a variable with the php $data variable returned from the controller
             var tables = {!! json_encode($data) !!};
             var tables_name = Object.keys(tables);
+
+            $("#step1").addClass("active");
+$("#step2").addClass( "active");
+$("#step3").addClass( "active");
+$("#step4").removeClass( "active");
     </script>
 
     <script type="application/javascript" src="{{ URL::asset('js/selectKey.js') }}"></script>

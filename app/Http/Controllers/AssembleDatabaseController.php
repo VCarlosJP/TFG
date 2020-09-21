@@ -46,13 +46,17 @@ class AssembleDatabaseController extends Controller
 
         $data = json_decode($request->input('Data'), true);
         $tables = array_keys($data);
+
+        
         
         foreach ($tables as $current_table) {
             app('App\Http\Controllers\databaseController')->createHashFromTable($current_table, $data[$current_table]);
             app('App\Http\Controllers\databaseController')->createHashFromTable($current_table.'_test', $data[$current_table]);
         }
 
-        return view('comparison')->with('tables', $tables);
+        // return var_dump($data);
+
+         return view('comparison')->with('tables', $tables);
     }
 
     //This controller performs a cleaning in all the modifications maded to the selected tables.

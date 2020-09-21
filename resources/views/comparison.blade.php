@@ -1,7 +1,7 @@
 @extends('layouts.master')
     @section('content')
 
-    <div style="margin-top:60px;">
+    <div style="margin-top:5px;">
         <div class="row justify-content-center">
             <div class="form-group mx-sm-3 mb-2">
                 <select name="table" class="form-control" id="table-to-work-select">
@@ -46,8 +46,8 @@
             border: 1px solid #dddddd;
             padding: 20px;
             background-color: #f8f8f8;
-            min-height: 700px;
-            max-height: 700px;
+            min-height: 420px;
+            max-height: 420px;
             overflow-y: scroll;
         }
 

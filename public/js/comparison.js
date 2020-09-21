@@ -1,3 +1,9 @@
+$("#step1").addClass("active");
+$("#step2").addClass( "active");
+$("#step3").addClass( "active");
+$("#step4").addClass( "active");
+
+
 
 //select element to display tables and button to start comparison are stored as variables
 table_select_element = document.getElementById('table-to-work-select');

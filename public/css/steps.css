@@ -1,0 +1,79 @@
+.containerV {
+
+}
+.progressbarV {
+    counter-reset: step;
+}
+.progressbarV li {
+    list-style-type: none;
+    width: 25%;
+    float: left;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    color: #7d7d7d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.progressbarV li:before {
+    width: 50px;
+    height: 50px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 45px;
+    border: 4px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+}
+.progressbarV li:after {
+    width: 100%;
+    height: 5px;
+    content: '';
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 25px;
+    left: -50%;
+    z-index: -1;
+}
+.progressbarV li:first-child:after {
+    content: none;
+}
+.progressbarV li.active {
+    color: green;
+}
+.progressbarV li.active:before {
+    border-color: #55b776;
+}
+.progressbarV li.active + li:after {
+    background-color: #55b776;
+}
+
+.myContainer{
+    /* display: flex; */
+    position: fixed;
+    border-right: 2px solid #dddddd;
+    border-left: 2px solid #dddddd;
+}
+.mainContainer{
+    display: flex;
+    justify-content: center;  
+}
+
+
+html, body{
+    background-color: #e75935;
+
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    
+    background-color: #000;
+}

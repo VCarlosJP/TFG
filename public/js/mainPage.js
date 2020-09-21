@@ -1,6 +1,12 @@
 //This var will containt all the tables selected on the first(current) view
 selectedTables = new Array();
 
+$("#step1").addClass("active");
+$("#step2").removeClass( "active");
+$("#step3").removeClass( "active");
+$("#step4").removeClass( "active");
+
+
 $('.toast').toast('show');
 
 //Get current database name to be loaded in a <select>

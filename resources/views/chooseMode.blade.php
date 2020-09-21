@@ -33,6 +33,12 @@
             var tables = {!! json_encode($tables) !!};
             $('#check-data-form [name="Data"]').val(JSON.stringify(tables));
             $('#compare-data-form [name="Data"]').val(JSON.stringify(tables));
+
+            $("#step1").addClass("active");
+            $("#step2").addClass( "active");
+            $("#step3").removeClass( "active");
+            $("#step4").removeClass( "active");
+
         });
     </script>
 

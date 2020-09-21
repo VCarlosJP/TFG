@@ -1,3 +1,8 @@
+$("#step1").addClass("active");
+$("#step2").addClass( "active");
+$("#step3").addClass( "active");
+$("#step4").removeClass( "active");
+        
         // clicked tables from the UI
         var selected_table = '';
         //columns to ignore will be stored here

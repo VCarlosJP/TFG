@@ -22,7 +22,8 @@
         $parsedData = (array) $data;
         $datax = false;
 
-    @endphp 
+    @endphp
+    <div style="max-height: 600px; overflow-y: scroll;">
     <table class="table table-striped table-bordered">
         <thead>
           <tr>
@@ -47,8 +48,16 @@
         </tbody>
  
       </table>
+      <div>
 
       @endif
+
+      <script>
+          $("#step1").addClass("active");
+$("#step2").addClass( "active");
+$("#step3").addClass( "active");
+$("#step4").addClass( "active");
+      </script>
 
     <script type="application/javascript" src="{{ URL::asset('js/checkDataResults.js') }}"></script>
 @stop

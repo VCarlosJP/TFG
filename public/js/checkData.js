@@ -8,6 +8,8 @@
         var active_rules = [];
         var column_type = '';
 
+        
+
 
         //This function renders all the columns corresponding to the selected table by the user
         function displayColumnsFromClickedTable(clicked_table_name){
@@ -68,11 +70,13 @@
 
         //It gets the id of the clicked rule, for knowing the name of the current rule.
         function getRuleOperatorName(operator_name){
+
             current_rule = operator_name;
         }
 
         //User ends with a modal, filling all the inputs for filtering the data. This function fills an array with all that data for send it when user is ready.
         function applyRule(){
+            
 
             var value_to_validate = $('#input-to-operate').val();
 
