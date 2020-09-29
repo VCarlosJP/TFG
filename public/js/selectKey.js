@@ -72,6 +72,7 @@ $("#step4").removeClass( "active");
 
         //When user clicks the Next Page Button, this function fires the submit of the hidden form from above.
         function postSelectedColumns(){
+            console.log(columns_to_ignore);
             $('#post-ignored-tables-form [name="Data"]').val(JSON.stringify(columns_to_ignore));
             $('#post-ignored-tables-form').submit();
         }

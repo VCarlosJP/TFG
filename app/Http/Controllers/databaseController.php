@@ -95,6 +95,10 @@ class databaseController extends Controller
     }
     //crea todos los valores HASH para la tabla seleccionada y evita los campos a tratar que se asignen
     public function createHashFromTable($table_name,$fields_to_except_to_hash){
+        
+        $preSQL = "UPDATE " .$table_name. " SET ".config('global.hash_satandard')." = NULL;";
+        DB::unprepared($preSQL);
+
         $fields_from_table = $this->getTableColumns($table_name);
         $fields_to_use_from_table = $this->evaluateFieldsToExcept($fields_from_table,$fields_to_except_to_hash);
         $sql = "UPDATE ".$table_name." SET ".config('global.hash_satandard')." =  MD5(concat(";
