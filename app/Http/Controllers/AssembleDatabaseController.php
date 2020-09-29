@@ -25,7 +25,14 @@ class AssembleDatabaseController extends Controller
         foreach ($tables as $current_table) {
             app('App\Http\Controllers\databaseController')->createHashColumn($current_table);
             app('App\Http\Controllers\databaseController')->createHashColumn($current_table.'_test');
+            app('App\Http\Controllers\databaseController')->createHashCountColumn($current_table);
+            app('App\Http\Controllers\databaseController')->createHashCountColumn($current_table.'_test');
         }
+
+        // foreach ($tables as $current_table) {
+        //     app('App\Http\Controllers\databaseController')->createHashCountColumn($current_table);
+        //     app('App\Http\Controllers\databaseController')->createHashCountColumn($current_table.'_test');
+        // }
 
         return $this->createViewsFromSelectedTables($tables);
     }
@@ -52,7 +59,14 @@ class AssembleDatabaseController extends Controller
         foreach ($tables as $current_table) {
             app('App\Http\Controllers\databaseController')->createHashFromTable($current_table, $data[$current_table]);
             app('App\Http\Controllers\databaseController')->createHashFromTable($current_table.'_test', $data[$current_table]);
+            app('App\Http\Controllers\databaseController')->countHashFromTable($current_table);
+            app('App\Http\Controllers\databaseController')->countHashFromTable($current_table.'_test');
         }
+
+        // foreach ($tables as $current_table) {
+        //     app('App\Http\Controllers\databaseController')->countHashFromTable($current_table);
+        //     app('App\Http\Controllers\databaseController')->countHashFromTable($current_table.'_test');
+        // }
 
         // return var_dump($data);
 

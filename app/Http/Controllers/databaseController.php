@@ -10,7 +10,8 @@ use Illuminate\Database\QueryException;
 class databaseController extends Controller
 {
     public function dataLeftHashTable($table_name){
-        $sql = "SELECT A.* FROM " .$table_name.config('global.view_table_standard')." A WHERE NOT A.".config('global.hash_satandard')." IN (SELECT ".config('global.hash_satandard')." FROM ".$table_name.config('global.view_test_table_standard').")";
+        $sql = "SELECT A.* FROM " .$table_name.config('global.view_table_standard')." A WHERE NOT A.".config('global.hash_satandard')." IN (SELECT ".config('global.hash_satandard')." FROM ".$table_name.config('global.view_test_table_standard')." )GROUP BY HASH_SAT ";
+        
         try {
              $sql_result = DB::select($sql);
         } catch (QueryException $exeption) {
@@ -22,7 +23,8 @@ class databaseController extends Controller
         return $sql_result;
     }
     public function dataRightHashTable($table_name){
-        $sql = "SELECT A.* FROM " .$table_name.config('global.view_test_table_standard')." A WHERE NOT A.".config('global.hash_satandard')." IN (SELECT ".config('global.hash_satandard')." FROM ".$table_name.config('global.view_table_standard').")";
+        $sql = "SELECT A.* FROM " .$table_name.config('global.view_test_table_standard')." A WHERE NOT A.".config('global.hash_satandard')." IN (SELECT ".config('global.hash_satandard')." FROM ".$table_name.config('global.view_table_standard').") GROUP BY HASH_SAT";
+       
         try {
              $sql_result = DB::select($sql);
         } catch (QueryException $exeption) {
@@ -93,9 +95,44 @@ class databaseController extends Controller
         }
         return true;
     }
+
+    public function createHashCountColumn($table_name){
+        $sql = "ALTER TABLE ".$table_name." ADD ".config('global.hash_count_standard')." int(11)";
+        try {
+             DB::statement($sql);   
+        } catch (QueryException $exeption) {
+            $exception_info = array(
+                "code"=>$exeption->getCode(),
+                "message"=>$exeption->getMessage());
+            return($exception_info);
+        }
+        return true;
+    }
+    public function countHashFromTable($table_name){
+        $preSQL = "UPDATE " .$table_name. " SET ".config('global.hash_count_standard')." = 0;";
+        DB::unprepared($preSQL);
+        $sql = "UPDATE ".$table_name." INNER JOIN (SELECT HASH_SAT, count(HASH_SAT) as repetidos FROM ".$table_name." group by HASH_SAT) t1 ON t1.HASH_SAT = ".$table_name.".HASH_SAT SET ".$table_name.".HASH_SAT_COUNT = t1.repetidos;";
+        try {
+            DB::unprepared($sql);
+        } catch (QueryException $exeption) {
+            $exception_info = array(
+                "code"=>$exeption->getCode(),
+                "message"=>$exeption->getMessage());
+            return($exception_info);
+        }
+        return true; 
+    }
+
+
+
+
+
+
+
+
+
     //crea todos los valores HASH para la tabla seleccionada y evita los campos a tratar que se asignen
     public function createHashFromTable($table_name,$fields_to_except_to_hash){
-        
         $preSQL = "UPDATE " .$table_name. " SET ".config('global.hash_satandard')." = NULL;";
         DB::unprepared($preSQL);
 
@@ -129,6 +166,7 @@ class databaseController extends Controller
         }
         $exeptions = array();
         array_push($exeptions, config('global.hash_satandard'));
+        array_push($exeptions, config('global.hash_count_standard'));
         $sql_result = $this->evaluateFieldsToExcept($sql_result,$exeptions);
 
         return $sql_result;
