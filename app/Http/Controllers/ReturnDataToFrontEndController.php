@@ -32,6 +32,9 @@ class ReturnDataToFrontEndController extends Controller
             app('App\Http\Controllers\databaseController')->createHashColumn($current_table);
             app('App\Http\Controllers\databaseController')->createHashColumn($current_table.config('global.test_table_standard'));
 
+            app('App\Http\Controllers\databaseController')->createHashCountColumn($current_table);
+            app('App\Http\Controllers\databaseController')->createHashCountColumn($current_table.config('global.test_table_standard'));
+
             
             app('App\Http\Controllers\databaseController')->createView($current_table);
             app('App\Http\Controllers\databaseController')->createView($current_table.config('global.test_table_standard'));
@@ -77,6 +80,7 @@ class ReturnDataToFrontEndController extends Controller
         $result = app('App\Http\Controllers\checkDataController')->checkVarcharMultiOperator($data[0],$data[1],$data[2],$data[3], $data[4]);
         
         //return count($result);
+        // dd($result);
         
         return view('checkDataResults')->with('data', $result);
     }
@@ -94,7 +98,7 @@ class ReturnDataToFrontEndController extends Controller
 
         $result = app('App\Http\Controllers\checkDataController')->checkIntMultiOperator($data[0],$data[1],$data[2],$data[3]);
         
-        //dd($result);
+        // dd($result);
         return view('checkDataResults')->with('data', $result);
         //return view('comparison')->with('tables', $tables);
     }

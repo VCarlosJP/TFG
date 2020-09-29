@@ -17,6 +17,7 @@
                 </div>
                 <!-- Hidden post that calls /resetPresentacionBD route for cleaning the views and hash columns from the previous comparison  -->
                 <form method="POST" action="/resetPresentacionBD">
+                @csrf
                     <button type="submit" class="btn btn-danger float-left">Reset Data</button>
                 </form>
         </div>

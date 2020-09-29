@@ -76,11 +76,18 @@ class AssembleDatabaseController extends Controller
     //This controller performs a cleaning in all the modifications maded to the selected tables.
     // It deletes the hash columns from local and external tables and it also deletes all the views created by the SAT. 
     function cleanDatabaseController(){
+        
         $tables = app('App\Http\Controllers\databaseController')->getTablesNameFromSelectedDB();
+        
         foreach ($tables as $table) {
             app('App\Http\Controllers\databaseController')->deleteHashColumn($table);
             
             app('App\Http\Controllers\databaseController')->deleteHashColumn($table."_test");
+
+            app('App\Http\Controllers\databaseController')->deleteHashCountColumn($table);
+            
+            app('App\Http\Controllers\databaseController')->deleteHashCountColumn($table."_test");
+
             app('App\Http\Controllers\databaseController')->deleteView($table."_view");
             
             app('App\Http\Controllers\databaseController')->deleteView($table."_test_view");

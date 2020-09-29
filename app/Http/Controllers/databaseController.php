@@ -262,7 +262,7 @@ class databaseController extends Controller
     }
 
      public function runSqlCheck($table_name,$column_name,$conditions_to_check){
-        $sql = "SELECT ". $column_name ." FROM " . $table_name . " WHERE (";
+        $sql = "SELECT * FROM " . $table_name . " WHERE (";
 
         foreach ($conditions_to_check as $condition) {
             $sql = $sql . $condition . " AND ";
@@ -395,6 +395,20 @@ class databaseController extends Controller
     ////////////////////////////////////////////////////////////////////////////
     public function deleteHashColumn($table_name){
         $sql = "ALTER TABLE ".$table_name." DROP IF EXISTS HASH_SAT ";
+        try {
+             DB::statement($sql);
+        } catch (QueryException $exeption) {
+            $exception_info = array(
+                "code"=>$exeption->getCode(),
+                "message"=>$exeption->getMessage());
+            dd($exception_info);
+            return($exception_info);
+        }
+     
+    }
+
+    public function deleteHashCountColumn($table_name){
+        $sql = "ALTER TABLE ".$table_name." DROP IF EXISTS HASH_SAT_COUNT ";
         try {
              DB::statement($sql);
         } catch (QueryException $exeption) {
