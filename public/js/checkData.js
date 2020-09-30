@@ -45,11 +45,11 @@
                 success: function( data, textStatus, jQxhr ){ 
 
                     if (data.match(/varchar.*/)) {
-                        renderRules(ruleOptionsVarchar, symbolsVarchar, true)
+                        renderRules(ruleOptionsVarchar, symbolsVarchar, true, "varchar")
                         column_type = "varchar";
                     }
                     else if (data.match(/int.*/)) {
-                        renderRules(ruleOptionsInt, symbolsInt, false)
+                        renderRules(ruleOptionsInt, symbolsInt, false, "int")
                         column_type = "int";
                     }
                 },
@@ -58,10 +58,17 @@
         }
 
         //The function loads all the rules available for the column.
-        function renderRules(rules, operator, checkbox_marked){
-            rules.forEach(function(rule_option, i){
-                $('#rule-options').append(`<button data-toggle="modal" data-target="#exampleModal" class="list-group-item list-group-item-action rules" id="${operator[i]}" onclick="getRuleOperatorName(this.id)">${rule_option}</button>`);
-            });
+        function renderRules(rules, operator, checkbox_marked, modalType){
+            if(modalType==="varchar"){
+                rules.forEach(function(rule_option, i){
+                    $('#rule-options').append(`<button data-toggle="modal" data-target="#exampleModal" class="list-group-item list-group-item-action rules" id="${operator[i]}" onclick="getRuleOperatorName(this.id)">${rule_option}</button>`);
+                });
+            }
+            else if(modalType==="int"){
+                rules.forEach(function(rule_option, i){
+                    $('#rule-options').append(`<button data-toggle="modal" data-target="#exampleModal2" class="list-group-item list-group-item-action rules" id="${operator[i]}" onclick="getRuleOperatorName(this.id)">${rule_option}</button>`);
+                });
+            }
 
             if(checkbox_marked){
                 $('#mayus').append(`<div class="form-check"><input type="checkbox" class="form-check-input" id="exampleCheck1"><label class="form-check-label" for="exampleCheck1">Mayus Sensitive</label></div>`);
@@ -77,8 +84,10 @@
         //User ends with a modal, filling all the inputs for filtering the data. This function fills an array with all that data for send it when user is ready.
         function applyRule(){
             
-
-            var value_to_validate = $('#input-to-operate').val();
+            if(column_type == "varchar")
+                var value_to_validate = $('#input-to-operate').val();
+            else 
+                var value_to_validate = $('#input-to-operate2').val();
 
             request_data[0] = selected_table;
             request_data[1] = current_column;

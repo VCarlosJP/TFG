@@ -69,6 +69,36 @@
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel2">Apply Rule</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="staticEmail2" class="sr-only">Ingresar Valor a Operar</label>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail22" value="Ingresar Valor a Operar">
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="input-to-operate" class="sr-only">Ingresar Valor a Operar</label>
+                            <input type="number" class="form-control" id="input-to-operate2" placeholder="Ej: 4">
+                        </div>
+                        <div id="mayus"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="applyRule();">Add Rule</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class='container-fluid mainContainer'>
 
             <div class="myContainer" style="min-height: 100%; width: 95%; background-color: white;">
